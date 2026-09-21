@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#5757d8">
+<title>Roadmap Studio — Zero to Hero</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--ink:#182230;--muted:#667085;--line:#e4e7ec;--brand:#5757d8;--brand2:#eeefff;--ok:#067647;--okbg:#ecfdf3;--warn:#b54708;--warnbg:#fffaeb;--bad:#b42318;--badbg:#fef3f2;--blue:#175cd3;--bluebg:#eff8ff;--shadow:0 14px 40px rgba(16,24,40,.09)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer}button,input,select,textarea{touch-action:manipulation}
+.wrap{max-width:1220px;margin:auto;padding:14px 14px 80px}.top{background:linear-gradient(135deg,#25275f,#5757d8 68%,#797aef);color:#fff;border-radius:22px;padding:22px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.top:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-95px;top:-125px;background:rgba(255,255,255,.08)}.topgrid{position:relative;z-index:1;display:grid;grid-template-columns:1.45fr .55fr;gap:18px}
+.eyebrow{text-transform:uppercase;letter-spacing:.09em;font-size:11px;font-weight:900;opacity:.8}.top h1{font-size:clamp(30px,5vw,50px);line-height:1.03;margin:5px 0 10px}.top p{color:#ededff;margin:6px 0;max-width:800px}
+.topbox{border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.09);border-radius:15px;padding:13px;font-size:13px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.btn{border:0;border-radius:10px;padding:10px 13px;min-height:44px;font-weight:850}.btn.white{background:white;color:#3d3eaa}.btn.brand{background:var(--brand);color:white}.btn.soft{background:var(--brand2);color:#4446b6}.btn.out{background:white;color:#344054;border:1px solid #d0d5dd}.btn.red{background:var(--badbg);color:var(--bad);border:1px solid #fecdca}
+.status{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:#edf0ff}.dot{width:8px;height:8px;border-radius:50%;background:#6ce9a6}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin:12px 0}.stat{background:white;border:1px solid var(--line);border-radius:15px;padding:14px}.label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:900}.big{font-size:29px;font-weight:900;line-height:1.08;margin:4px 0}.small{font-size:13px}.mini{font-size:12px}.muted{color:var(--muted)}.bar{height:9px;border-radius:99px;background:#eef0f4;overflow:hidden;margin-top:8px}.bar span{height:100%;display:block;background:var(--brand);width:0;transition:.2s}
+.main{display:grid;grid-template-columns:245px minmax(0,1fr);gap:14px}.side{background:white;border:1px solid var(--line);border-radius:17px;padding:9px;align-self:start;position:sticky;top:10px}.side button{width:100%;border:0;background:transparent;border-radius:10px;text-align:left;padding:10px;min-height:46px;font-weight:800;color:#475467}.side button.active{background:var(--brand2);color:#3f40ad}.side button:hover{background:#f8f9fc}.side hr{border:0;border-top:1px solid var(--line);margin:8px 0}
+.mobile{display:none;background:white;border:1px solid var(--line);border-radius:14px;padding:9px;margin-bottom:10px;position:sticky;top:5px;z-index:20;box-shadow:0 6px 18px rgba(16,24,40,.08)}.mobile select{width:100%;min-height:48px;border:1px solid #d0d5dd;border-radius:9px;padding:9px;background:white;font-size:16px}
+.view{display:none;animation:fade .2s ease}.view.active{display:block}@keyframes fade{from{opacity:.25;transform:translateY(4px)}to{opacity:1;transform:none}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
+.card{background:white;border:1px solid var(--line);border-radius:17px;padding:18px;margin-bottom:12px}.card h2{font-size:23px;margin:0 0 7px}.card h3{font-size:17px;margin:0 0 6px}.cardhead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.call{padding:12px 13px;border-radius:11px;margin:9px 0}.info{background:var(--bluebg);color:#1849a9}.good{background:var(--okbg);color:#05603a}.warn{background:var(--warnbg);color:#7a2e0e}.bad{background:var(--badbg);color:#7a271a}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px}.c12{grid-column:span 12}.c8{grid-column:span 8}.c6{grid-column:span 6}.c4{grid-column:span 4}.c3{grid-column:span 3}
+label{display:block;font-size:12px;font-weight:850;color:#475467;margin:0 0 4px}.field{margin-bottom:9px}input[type=text],input[type=date],input[type=url],input[type=number],select,textarea{width:100%;min-height:44px;border:1px solid #d0d5dd;border-radius:9px;padding:9px 10px;background:white;color:var(--ink);font-size:16px}textarea{min-height:90px;resize:vertical}
+.roadmap-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.roadmap-card{border:1px solid var(--line);border-radius:15px;padding:15px;background:#fff;box-shadow:0 4px 14px rgba(16,24,40,.04)}.roadmap-card h3{font-size:19px;margin:0 0 4px}.roadmap-card:hover{border-color:#c7c9ff}.chip{display:inline-flex;padding:4px 8px;border-radius:99px;font-size:11px;font-weight:850;background:var(--brand2);color:#4446b6}.chip.gray{background:#f2f4f7;color:#475467}.roadmap-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}
+.progress{height:9px;border-radius:99px;background:#eef0f4;overflow:hidden;margin-top:9px}.progress span{display:block;height:100%;background:var(--brand)}
+.empty{padding:30px;text-align:center;border:1px dashed #cfd4dc;border-radius:15px;background:#fafbfc}.next{border-left:4px solid var(--brand);background:var(--brand2);border-radius:11px;padding:13px}
+.phase{border:1px solid var(--line);border-radius:14px;margin:10px 0;overflow:hidden}.phasehead{padding:12px 13px;background:#fafbfc;display:flex;gap:10px;justify-content:space-between;align-items:flex-start}.phasebody{padding:0 13px 12px}.phase-title{font-weight:900}.task{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:10px;align-items:start;padding:12px 0;border-top:1px solid var(--line)}.task:first-child{border-top:0}.task input[type=checkbox]{width:23px;height:23px;margin-top:2px;accent-color:var(--brand)}.task.done .taskname{text-decoration:line-through;color:var(--muted)}.taskname{font-weight:820}.tasknote{font-size:12px;color:var(--muted);margin-top:3px}.iconbtn{border:1px solid var(--line);background:white;border-radius:8px;min-width:38px;min-height:38px;font-weight:900;color:#667085}.iconbtn:hover{background:#f8f9fc}
+.phasefoot{display:flex;gap:7px;flex-wrap:wrap;padding-top:9px}.meter{font-size:12px;color:var(--muted);font-weight:800}.editline{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;margin-top:8px}.create-panel{display:none}.create-panel.show{display:block}.template-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.template{border:1px solid var(--line);background:white;border-radius:11px;padding:10px;text-align:left;min-height:72px}.template.active{border-color:#9fa1ff;background:var(--brand2)}.template b{display:block}.template span{font-size:12px;color:var(--muted)}
+.lock{max-width:520px;margin:9vh auto;background:white;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}.lock h1{font-size:28px;margin:0 0 8px}.lock .logo{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:var(--brand2);color:var(--brand);font-weight:950;font-size:21px;margin-bottom:12px}
+.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%) translateY(18px);opacity:0;pointer-events:none;background:#101828;color:white;padding:10px 13px;border-radius:10px;z-index:99;transition:.2s;font-size:13px}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.hide{display:none!important}.pageactions{display:flex;justify-content:space-between;gap:9px;flex-wrap:wrap;margin-top:10px}
+@media(max-width:900px){.topgrid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.main{display:block}.side{display:none}.mobile{display:block}.roadmap-grid{grid-template-columns:1fr}.c8,.c6,.c4,.c3{grid-column:span 12}.template-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.wrap{padding:9px 9px 78px}.top{padding:18px 15px;border-radius:17px}.stats{grid-template-columns:1fr}.card{padding:15px}.template-grid{grid-template-columns:1fr}.task{grid-template-columns:auto minmax(0,1fr)}.task>.iconbtn{grid-column:2;justify-self:end}.phasehead{flex-direction:column}.editline{grid-template-columns:1fr}.roadmap-actions .btn{flex:1}}
+</style>
+<meta name="description" content="Create and track zero-to-hero roadmaps with cloud sync.">\n</head>
+<body>
+<div id="locked" class="lock hide">
+  <div class="logo">R</div>
+  <h1>Roadmap Studio</h1>
+  <p class="muted">Enter your private sync code once. Your roadmaps will then sync through the separate Roadmap Studio cloud project.</p>
+  <label>Private sync code</label>
+  <input id="keyInput" type="text" autocomplete="off" placeholder="Paste your sync code">
+  <div class="actions"><button class="btn brand" id="unlockBtn" type="button">Unlock studio</button></div>
+  <div class="call warn small"><b>Keep this code private.</b> It grants access to your roadmap workspace.</div>
+</div>
+
+<div id="app" class="wrap hide">
+  <header class="top">
+    <div class="topgrid">
+      <div>
+        <div class="eyebrow">Roadmap Studio · zero → hero</div>
+        <h1>One place for every roadmap.</h1>
+        <p>Create a roadmap yourself, start from a proven template, or ask ChatGPT to build one for you and add it here. Every roadmap can have its own phases, tasks, notes, target date and next action.</p>
+        <div class="actions">
+          <button class="btn white" id="newRoadmapBtn" type="button">+ New roadmap</button>
+          <button class="btn out" id="exportBtn" type="button">Export all</button>
+          <button class="btn out" id="lockBtn" type="button">Lock</button>
+          <span class="status"><span class="dot"></span><span id="saveStatus">Connecting…</span></span>
+        </div>
+      </div>
+      <div class="topbox">
+        <b>How to use it with ChatGPT</b><br>
+        Tell ChatGPT: “Create me a roadmap for [goal] and add it to Roadmap Studio.” It can create the phases and tasks directly in this workspace. You can then edit, tick and track it here.
+      </div>
+    </div>
+  </header>
+
+  <section class="stats">
+    <div class="stat"><div class="label">Active roadmaps</div><div class="big" id="statRoadmaps">0</div><div class="small muted">Across all goals</div></div>
+    <div class="stat"><div class="label">Overall completion</div><div class="big" id="statCompletion">0%</div><div class="bar"><span id="statBar"></span></div></div>
+    <div class="stat"><div class="label">Tasks complete</div><div class="big" id="statTasks">0 / 0</div><div class="small muted">Across the studio</div></div>
+    <div class="stat"><div class="label">Cloud sync</div><div class="big" id="statSync" style="font-size:21px">Connected</div><div class="small muted">Separate from the SlideBites production database</div></div>
+  </section>
+
+  <div class="mobile">
+    <label for="mobileNav">Go to</label>
+    <select id="mobileNav"><option value="home">Roadmaps</option><option value="studio">Open roadmap</option><option value="settings">Settings</option></select>
+  </div>
+
+  <div class="main">
+    <aside class="side">
+      <button data-view="home" class="active" type="button">Roadmaps</button>
+      <button data-view="studio" type="button">Open roadmap</button>
+      <hr>
+      <button id="sideNewBtn" type="button">+ Create roadmap</button>
+      <button data-view="settings" type="button">Settings & backup</button>
+    </aside>
+
+    <main>
+      <section class="view active" id="view-home">
+        <div class="card">
+          <div class="cardhead">
+            <div><div class="eyebrow">Your roadmap library</div><h2>Choose what you are building next</h2><p class="small muted">Each roadmap is independent. Progress and notes sync automatically.</p></div>
+            <button class="btn soft" id="homeNewBtn" type="button">+ New</button>
+          </div>
+          <div id="createPanel" class="create-panel">
+            <hr style="border:0;border-top:1px solid var(--line);margin:14px 0">
+            <h3>Create a roadmap</h3>
+            <div class="grid">
+              <div class="c6 field"><label>Roadmap title</label><input id="newTitle" type="text" placeholder="e.g. Launch my clinic, Win a national award, Build a SaaS"></div>
+              <div class="c6 field"><label>Category</label><select id="newCategory"><option>General</option><option>Business</option><option>Product</option><option>Healthcare / QI</option><option>Research / Publication</option><option>Career</option><option>Award / Recognition</option><option>Personal Goal</option></select></div>
+              <div class="c8 field"><label>What does “hero” look like?</label><textarea id="newGoal" placeholder="Describe the end state in plain language."></textarea></div>
+              <div class="c4 field"><label>Target date (optional)</label><input id="newDate" type="date"></div>
+            </div>
+            <label>Starting structure</label>
+            <div class="template-grid" id="templateGrid">
+              <button class="template active" data-template="zero" type="button"><b>Zero → Hero</b><span>Define, research, validate, build, test, launch, scale.</span></button>
+              <button class="template" data-template="business" type="button"><b>Business</b><span>Problem, offer, proof, sales, operations, scale.</span></button>
+              <button class="template" data-template="product" type="button"><b>Product</b><span>User problem, MVP, validation, launch, retention, growth.</span></button>
+              <button class="template" data-template="qi" type="button"><b>QI / Healthcare</b><span>Governance, baseline, PDSA, results, replication, dissemination.</span></button>
+              <button class="template" data-template="research" type="button"><b>Research / Paper</b><span>Question, protocol, data, analysis, writing, submission.</span></button>
+              <button class="template" data-template="blank" type="button"><b>Blank</b><span>Start with one phase and build it your way.</span></button>
+            </div>
+            <div class="actions"><button class="btn brand" id="createRoadmapBtn" type="button">Create roadmap</button><button class="btn out" id="cancelCreateBtn" type="button">Cancel</button></div>
+          </div>
+        </div>
+        <div id="roadmapList" class="roadmap-grid"></div>
+      </section>
+
+      <section class="view" id="view-studio">
+        <div id="noRoadmap" class="card empty"><h2>No roadmap open</h2><p class="muted">Open one from the Roadmaps page, or create a new one.</p><button class="btn brand" id="emptyCreateBtn" type="button">Create a roadmap</button></div>
+        <div id="roadmapEditor" class="hide">
+          <div class="card">
+            <div class="cardhead">
+              <div style="min-width:0"><div class="eyebrow" id="editorCategory">Roadmap</div><h2 id="editorTitle">Roadmap</h2><p id="editorGoal" class="muted"></p></div>
+              <div class="actions" style="margin-top:0"><button class="btn out" id="editMetaBtn" type="button">Edit details</button><button class="btn red" id="deleteRoadmapBtn" type="button">Delete</button></div>
+            </div>
+            <div id="metaEdit" class="hide" style="margin-top:12px">
+              <div class="grid">
+                <div class="c6 field"><label>Title</label><input id="editTitle" type="text"></div>
+                <div class="c3 field"><label>Category</label><input id="editCategory" type="text"></div>
+                <div class="c3 field"><label>Target date</label><input id="editDate" type="date"></div>
+                <div class="c12 field"><label>Goal</label><textarea id="editGoal"></textarea></div>
+              </div>
+              <button class="btn brand" id="saveMetaBtn" type="button">Save details</button>
+            </div>
+            <div class="grid" style="margin-top:12px">
+              <div class="c4"><div class="label">Progress</div><div class="big" id="editorProgress">0%</div><div class="progress"><span id="editorProgressBar"></span></div></div>
+              <div class="c4"><div class="label">Target date</div><div class="big" id="editorDate" style="font-size:20px">No date</div></div>
+              <div class="c4"><div class="label">Status</div><div class="big" id="editorStatus" style="font-size:20px">Active</div></div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="eyebrow">Next best action</div>
+            <div class="next"><h3 id="nextTaskTitle">Everything complete</h3><p class="small muted" id="nextTaskText">This roadmap has no incomplete tasks.</p></div>
+          </div>
+          <div id="phaseList"></div>
+          <div class="card">
+            <h3>Add a phase</h3>
+            <div class="editline"><input id="newPhaseTitle" type="text" placeholder="Phase name"><button class="btn soft" id="addPhaseBtn" type="button">+ Add phase</button></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-settings">
+        <div class="card">
+          <div class="eyebrow">Workspace</div><h2>Cloud sync & backup</h2>
+          <div class="call good"><b>Cloud sync is enabled.</b> Roadmaps are stored in the dedicated Roadmap Studio Supabase project, not the production SlideBites database.</div>
+          <p class="small muted">The private sync code is stored only in this browser. To open the same workspace on another device, use your private access link or enter the same code.</p>
+          <div class="actions"><button class="btn out" id="copyLinkBtn" type="button">Copy private access link</button><button class="btn out" id="exportAllBtn" type="button">Export JSON backup</button><button class="btn red" id="clearLocalBtn" type="button">Forget this device</button></div>
+        </div>
+        <div class="card">
+          <div class="eyebrow">ChatGPT workflow</div><h2>Ask, and it can appear here</h2>
+          <p>In ChatGPT, say something like:</p>
+          <div class="call info"><b>“Create a zero-to-hero roadmap for opening a private clinic in the UAE and add it to Roadmap Studio.”</b></div>
+          <p class="small muted">ChatGPT can create a custom roadmap in the separate workspace. You then manage the tasks and progress here.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+"use strict";
+var KEY_NAME="roadmapStudioKeyV3",CACHE_NAME="roadmapStudioCacheV3";
+var key="",roadmaps=[],currentId=null,selectedTemplate="zero",saveTimers={};
+function el(id){return document.getElementById(id)}function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"})[c]})}
+function toast(m){var t=el("toast");t.textContent=m;t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove("show")},1700)}
+function base(){return location.pathname.replace(/\/$/,"")}
+function api(path,opts){
+  opts=opts||{};opts.headers=Object.assign({"Content-Type":"application/json","x-roadmap-key":key},opts.headers||{});
+  var apiBase="https://ucsonyzndqjgkxfeoscw.supabase.co/functions/v1/roadmap-api";
+  return fetch(apiBase+path,opts).then(async function(r){var data=null;try{data=await r.json()}catch(e){}if(!r.ok)throw new Error((data&&data.error)||("HTTP "+r.status));return data})
+}
+function cache(){try{localStorage.setItem(CACHE_NAME,JSON.stringify(roadmaps))}catch(e){}}
+function progress(r){var all=0,done=0;(r.data&&r.data.phases||[]).forEach(function(p){(p.tasks||[]).forEach(function(t){all++;if(t.done)done++})});return{all:all,done:done,pct:all?Math.round(done/all*100):0}}
+function uuid(){return "id-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,8)}
+function templates(name){
+  var maps={
+    zero:["Define the destination","Research the landscape","Validate the approach","Build the first version","Test in the real world","Launch deliberately","Scale what works"],
+    business:["Problem & market","Offer & positioning","Proof of demand","Sales engine","Operations","Economics","Scale"],
+    product:["User problem","Scope the MVP","Build","User validation","Launch","Retention","Growth"],
+    qi:["Governance & aim","Baseline","PDSA 1","PDSA 2","Results","Independent replication","Dissemination & sustainability"],
+    research:["Research question","Protocol & governance","Data collection","Analysis","Writing","Submission","Revision & dissemination"],
+    blank:["First phase"]
+  };
+  return (maps[name]||maps.zero).map(function(title,i){return{id:uuid(),title:title,description:"",tasks:[{id:uuid(),title:i===0?"Define the outcome and first measurable step":"Add the key actions for this phase",done:false,notes:""}]}})
+}
+function showLocked(){
+  el("locked").classList.remove("hide");el("app").classList.add("hide")
+}
+function showApp(){
+  el("locked").classList.add("hide");el("app").classList.remove("hide")
+}
+function parseKey(){
+  var hash=location.hash||"";var m=hash.match(/(?:^#|&)key=([^&]+)/);
+  if(m){key=decodeURIComponent(m[1]);try{localStorage.setItem(KEY_NAME,key)}catch(e){}history.replaceState(null,"",location.pathname)}
+  if(!key){try{key=localStorage.getItem(KEY_NAME)||""}catch(e){}}
+}
+function unlock(){
+  key=el("keyInput").value.trim();if(!key)return toast("Enter the sync code");
+  try{localStorage.setItem(KEY_NAME,key)}catch(e){}
+  load()
+}
+function load(){
+  el("saveStatus").textContent="Syncing…";el("statSync").textContent="Connecting";
+  api("/roadmaps").then(function(data){
+    roadmaps=data.roadmaps||[];cache();showApp();render();el("saveStatus").textContent="Cloud synced ✓";el("statSync").textContent="Connected"
+  }).catch(function(err){
+    var cached=[];try{cached=JSON.parse(localStorage.getItem(CACHE_NAME)||"[]")}catch(e){}
+    if(cached.length){roadmaps=cached;showApp();render();el("saveStatus").textContent="Offline cache";el("statSync").textContent="Offline";toast("Cloud unavailable — showing cached roadmaps")}
+    else{showLocked();el("keyInput").value=key;toast(err.message==="Unauthorized"?"That sync code is not valid":"Could not connect")}
+  })
+}
+function render(){
+  renderStats();renderList();renderEditor()
+}
+function renderStats(){
+  var total=0,done=0;roadmaps.forEach(function(r){var p=progress(r);total+=p.all;done+=p.done});
+  var pct=total?Math.round(done/total*100):0;
+  el("statRoadmaps").textContent=roadmaps.filter(function(r){return r.status!=="archived"}).length;
+  el("statCompletion").textContent=pct+"%";el("statBar").style.width=pct+"%";el("statTasks").textContent=done+" / "+total
+}
+function renderList(){
+  var box=el("roadmapList");box.innerHTML="";
+  if(!roadmaps.length){box.innerHTML='<div class="empty"><h3>No roadmaps yet</h3><p class="muted">Create your first zero-to-hero roadmap.</p></div>';return}
+  roadmaps.slice().sort(function(a,b){return new Date(b.updated_at)-new Date(a.updated_at)}).forEach(function(r){
+    var p=progress(r),card=document.createElement("article");card.className="roadmap-card";
+    card.innerHTML='<div class="chip">'+esc(r.category||"General")+'</div><h3>'+esc(r.title)+'</h3><p class="small muted">'+esc(r.goal||r.description||"")+'</p><div class="progress"><span style="width:'+p.pct+'%"></span></div><div class="small muted" style="margin-top:5px">'+p.pct+'% · '+p.done+' of '+p.all+' tasks complete'+(r.target_date?' · target '+esc(r.target_date):'')+'</div><div class="roadmap-actions"><button class="btn soft open-roadmap" type="button">Open</button></div>';
+    card.querySelector(".open-roadmap").onclick=function(){currentId=r.id;showView("studio");renderEditor()};box.appendChild(card)
+  })
+}
+function current(){return roadmaps.find(function(r){return r.id===currentId})||null}
+function renderEditor(){
+  var r=current();el("noRoadmap").classList.toggle("hide",!!r);el("roadmapEditor").classList.toggle("hide",!r);if(!r)return;
+  var p=progress(r);el("editorCategory").textContent=r.category||"Roadmap";el("editorTitle").textContent=r.title;el("editorGoal").textContent=r.goal||"";el("editorProgress").textContent=p.pct+"%";el("editorProgressBar").style.width=p.pct+"%";el("editorDate").textContent=r.target_date||"No date";el("editorStatus").textContent=(r.status||"active").replace(/^./,function(c){return c.toUpperCase()});
+  var next=null,nextPhase="";(r.data&&r.data.phases||[]).some(function(ph){var t=(ph.tasks||[]).find(function(x){return !x.done});if(t){next=t;nextPhase=ph.title;return true}return false});
+  el("nextTaskTitle").textContent=next?next.title:"Everything complete";el("nextTaskText").textContent=next?("Phase: "+nextPhase+(next.notes?" · "+next.notes:"")):"This roadmap has no incomplete tasks.";
+  var list=el("phaseList");list.innerHTML="";
+  (r.data&&r.data.phases||[]).forEach(function(ph,pi){
+    var phase=document.createElement("div");phase.className="phase";
+    var done=(ph.tasks||[]).filter(function(t){return t.done}).length,total=(ph.tasks||[]).length;
+    phase.innerHTML='<div class="phasehead"><div><div class="phase-title">'+esc(ph.title)+'</div><div class="meter">'+done+' / '+total+' tasks complete</div></div><button class="iconbtn del-phase" type="button" title="Delete phase">×</button></div><div class="phasebody"><div class="tasks"></div><div class="phasefoot"><input class="new-task-input" type="text" placeholder="Add a task"><button class="btn soft add-task" type="button">+ Add task</button></div></div>';
+    var tasks=phase.querySelector(".tasks");
+    (ph.tasks||[]).forEach(function(t,ti){
+      var row=document.createElement("div");row.className="task"+(t.done?" done":"");
+      row.innerHTML='<input type="checkbox" '+(t.done?"checked":"")+'><div><div class="taskname">'+esc(t.title)+'</div><div class="tasknote">'+esc(t.notes||"")+'</div></div><button class="iconbtn del-task" type="button" title="Delete task">×</button>';
+      row.querySelector('input[type="checkbox"]').onchange=function(e){t.done=e.target.checked;touchRoadmap(r);render()};
+      row.querySelector(".taskname").ondblclick=function(){var v=prompt("Edit task",t.title);if(v&&v.trim()){t.title=v.trim();touchRoadmap(r);render()}};
+      row.querySelector(".tasknote").onclick=function(){var v=prompt("Task notes",t.notes||"");if(v!==null){t.notes=v;touchRoadmap(r);render()}};
+      row.querySelector(".del-task").onclick=function(){if(confirm("Delete this task?")){ph.tasks.splice(ti,1);touchRoadmap(r);render()}};tasks.appendChild(row)
+    });
+    phase.querySelector(".add-task").onclick=function(){var inp=phase.querySelector(".new-task-input"),v=inp.value.trim();if(!v)return;ph.tasks.push({id:uuid(),title:v,done:false,notes:""});inp.value="";touchRoadmap(r);render()};
+    phase.querySelector(".new-task-input").onkeydown=function(e){if(e.key==="Enter")phase.querySelector(".add-task").click()};
+    phase.querySelector(".phase-title").ondblclick=function(){var v=prompt("Edit phase",ph.title);if(v&&v.trim()){ph.title=v.trim();touchRoadmap(r);render()}};
+    phase.querySelector(".del-phase").onclick=function(){if(confirm("Delete this phase and its tasks?")){r.data.phases.splice(pi,1);touchRoadmap(r);render()}};
+    list.appendChild(phase)
+  })
+}
+function touchRoadmap(r){
+  r.updated_at=new Date().toISOString();cache();renderStats();renderList();scheduleSave(r)
+}
+function scheduleSave(r){
+  clearTimeout(saveTimers[r.id]);el("saveStatus").textContent="Saving…";
+  saveTimers[r.id]=setTimeout(function(){api("/roadmaps/"+encodeURIComponent(r.id),{method:"PUT",body:JSON.stringify({title:r.title,goal:r.goal,category:r.category,description:r.description,target_date:r.target_date,status:r.status,data:r.data})}).then(function(updated){var i=roadmaps.findIndex(function(x){return x.id===r.id});if(i>=0)roadmaps[i]=updated.roadmap;cache();el("saveStatus").textContent="Cloud saved ✓"}).catch(function(){el("saveStatus").textContent="Save pending";toast("Cloud save failed — kept locally")})},500)
+}
+function showView(name){
+  document.querySelectorAll(".view").forEach(function(v){v.classList.toggle("active",v.id==="view-"+name)});document.querySelectorAll(".side [data-view]").forEach(function(b){b.classList.toggle("active",b.getAttribute("data-view")===name)});el("mobileNav").value=name;window.scrollTo({top:Math.max(0,document.querySelector(".mobile").offsetTop-4),behavior:"smooth"})
+}
+document.querySelectorAll("[data-view]").forEach(function(b){b.onclick=function(){showView(b.getAttribute("data-view"))}});el("mobileNav").onchange=function(){showView(this.value)}
+function openCreate(){showView("home");el("createPanel").classList.add("show");el("newTitle").focus()}function closeCreate(){el("createPanel").classList.remove("show")}
+["newRoadmapBtn","homeNewBtn","sideNewBtn","emptyCreateBtn"].forEach(function(id){el(id).onclick=openCreate});el("cancelCreateBtn").onclick=closeCreate;
+document.querySelectorAll(".template").forEach(function(b){b.onclick=function(){selectedTemplate=b.getAttribute("data-template");document.querySelectorAll(".template").forEach(function(x){x.classList.toggle("active",x===b)})}});
+el("createRoadmapBtn").onclick=function(){
+  var title=el("newTitle").value.trim(),goal=el("newGoal").value.trim();if(!title)return toast("Give the roadmap a title");
+  var body={title:title,goal:goal,category:el("newCategory").value,target_date:el("newDate").value||null,description:"",status:"active",data:{version:1,phases:templates(selectedTemplate)}};
+  el("saveStatus").textContent="Creating…";api("/roadmaps",{method:"POST",body:JSON.stringify(body)}).then(function(x){roadmaps.unshift(x.roadmap);cache();currentId=x.roadmap.id;el("newTitle").value="";el("newGoal").value="";el("newDate").value="";closeCreate();render();showView("studio");toast("Roadmap created")}).catch(function(e){toast(e.message)})
+}
+el("addPhaseBtn").onclick=function(){var r=current(),v=el("newPhaseTitle").value.trim();if(!r||!v)return;(r.data.phases||(r.data.phases=[])).push({id:uuid(),title:v,description:"",tasks:[]});el("newPhaseTitle").value="";touchRoadmap(r);render()}
+el("editMetaBtn").onclick=function(){var r=current();if(!r)return;el("editTitle").value=r.title;el("editCategory").value=r.category||"";el("editDate").value=r.target_date||"";el("editGoal").value=r.goal||"";el("metaEdit").classList.toggle("hide")}
+el("saveMetaBtn").onclick=function(){var r=current();if(!r)return;r.title=el("editTitle").value.trim()||r.title;r.category=el("editCategory").value.trim()||"General";r.target_date=el("editDate").value||null;r.goal=el("editGoal").value.trim();el("metaEdit").classList.add("hide");touchRoadmap(r);render()}
+el("deleteRoadmapBtn").onclick=function(){var r=current();if(!r||!confirm("Delete this roadmap permanently?"))return;api("/roadmaps/"+encodeURIComponent(r.id),{method:"DELETE"}).then(function(){roadmaps=roadmaps.filter(function(x){return x.id!==r.id});currentId=null;cache();render();showView("home");toast("Roadmap deleted")}).catch(function(e){toast(e.message)})}
+function exportAll(){var blob=new Blob([JSON.stringify({version:1,exported_at:new Date().toISOString(),roadmaps:roadmaps},null,2)],{type:"application/json"}),a=document.createElement("a"),d=new Date().toISOString().slice(0,10);a.href=URL.createObjectURL(blob);a.download="roadmap-studio-backup-"+d+".json";document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href)},800)}
+el("exportBtn").onclick=exportAll;el("exportAllBtn").onclick=exportAll;
+el("copyLinkBtn").onclick=function(){var link=location.origin+location.pathname+"#key="+encodeURIComponent(key);if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(link).then(function(){toast("Private access link copied")})}else{prompt("Copy this private access link",link)}}
+el("lockBtn").onclick=function(){try{localStorage.removeItem(KEY_NAME)}catch(e){}key="";showLocked();el("keyInput").value=""}
+el("clearLocalBtn").onclick=function(){if(!confirm("Forget the sync code and cached data on this device? Cloud roadmaps will remain safe."))return;try{localStorage.removeItem(KEY_NAME);localStorage.removeItem(CACHE_NAME)}catch(e){}key="";showLocked();toast("This device was forgotten")}
+el("unlockBtn").onclick=unlock;el("keyInput").onkeydown=function(e){if(e.key==="Enter")unlock()}
+parseKey();if(key)load();else showLocked();
+})();
+</script>
+</body>
+</html>
